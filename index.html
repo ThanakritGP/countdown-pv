@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บนับถอยหลัง</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Thai&display=swap">
+    <style>
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            background-image: linear-gradient(to right top, #414073, #006393, #00839a, #009e8a, #79b473);
+            color: #333;
+            text-align: left; /* ปรับให้ข้อความอยู่ทางซ้าย */
+            padding-top: 50px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .countdown {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center; /* ปรับให้เนื้อหาภายในตรงกลาง */
+        }
+
+        #timer {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        #timer span {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        /* เพิ่มส่วนนี้เพื่อทำให้ส่วนล่างเป็นสีโปร่งใส */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://cdn.discordapp.com/attachments/975624780730490900/1229788658652020820/20231009_135829.jpg?ex=6630f4f0&is=661e7ff0&hm=0d87b882310be9f49f7c966bc6c936d7750b81fc9d50142b0063a938a4ca175e&');
+            background-size: cover;
+            opacity: 0.3; /* ปรับ opacity เป็น 30% */
+            z-index: -1;
+        }
+
+        h1 {
+            color: rgb(20, 120, 50); /* เปลี่ยนสีตัวอักษรคำว่า "นับถอยหลัง" เป็นสีที่ต้องการ */
+        }
+
+        /* ปรับระยะห่างระหว่าง bullet point กับข้อความ */
+        ul {
+            padding-left: 0;
+            list-style: none;
+            margin-left: 0; /* remove default margin */
+        }
+        ul li:before {
+            content: "\2022"; /* bullet point symbol */
+            color: #333; /* bullet point color */
+            display: inline-block;
+            width: 1em;
+            margin-right: 0.5em; /* adjust space between bullet point and text */
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>ประชุม<br>DSSC-AC</h1>
+        <div id="timer">
+            <span id="days">00</span> วัน
+            <span id="hours">00</span> ชั่วโมง
+            <span id="minutes">00</span> นาที
+            <span id="seconds">00</span> วินาที
+        </div>
+        <!-- กิจกรรมที่จะเกิดขึ้นเร็วๆ นี้ -->
+        <div style="margin-top: 50px;">
+            <h2 style="color: rgb(20, 120, 50);">กิจกรรมที่จะเกิดขึ้นเร็วๆ นี้...</h2>
+            <ul style="color: #333; text-align: left;">
+                <!-- <li>...</li>
+                <li>...</li>
+                <li>...</li> -->
+            </ul>
+        </div>
+        <!-- สิ้นสุดกิจกรรมที่จะเกิดขึ้นเร็วๆ นี้ -->
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("April 20, 2024 20:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+            // Get the current date and time
+            var now = new Date().getTime();
+            
+            // Calculate the distance between now and the countdown date
+            var distance = countDownDate - now;
+            
+            // Check if the countdown is finished
+            if (distance <= 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "ประชุม กนร.!!";
+                return; // Exit the function to prevent further execution
+            }
+            
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the countdown in the HTML
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }, 1000);
+    </script>
+</body>
+</html>
